@@ -305,42 +305,7 @@ def securitynl_news():
 
 
 
-def samanyolu_news():
-    samanyolu = "https://www.samanyoluhaber.com/rss.htm&id=1"
-    blog_feed = feedparser.parse(samanyolu)
-    counter= 0
-    rss_feeds= []
-    for x in blog_feed["entries"]:
-        # counter+=1
-        # if counter==6: break
-        print(x["summary_detail"])
-        im= x["summary_detail"]["value"]
-        index= im.index("src")
-        new= im[index:-1]
-        image= new.split("/></p>")[0][5:-2]
-        if "jpg" in image:
-            new_image= image.split("jpg")[0]
-            image= "{}jpg".format(new_image)
-        if "jpeg" in image:
-            new_image= image.split("jpeg")[0]
-            image= "{}jpeg".format(new_image)
-        summary= regex.sub('', x.summary).strip()
-        link= x.link
-        title= x.title
-        #image= x["links"][0]["href"]
-        time= time= x["published"].strip("+02")
-        # print("TITLE: ", title)
-        
-        # print("SUMMARY: ", summary)
-        # print("LINK: ", link)
-        # print("IMAGE: ", image)
-        # print("*"*100)
-        rss_feeds.append({"title": title, "summary": summary,
-        "link": link, "image": image, "time":time
-        })
-    return(rss_feeds)
 
-# print(samanyolu_news())
 
 
 
